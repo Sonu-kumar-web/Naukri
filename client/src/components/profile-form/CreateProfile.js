@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../redux/actions/profile";
+import Popup from "reactjs-popup";
 
 const CreateProfile = ({ createProfile, history }) => {
    const [formData, setFormData] = useState({
@@ -97,7 +98,28 @@ const CreateProfile = ({ createProfile, history }) => {
                <small className="form-text">Job Description (JD)</small>
             </div>
 
-            <input type="submit" className="btn btn-primary my-1" />
+            <Popup
+               trigger={
+                  <input type="submit" className="btn btn-primary my-1" />
+               }
+               position="right center"
+            >
+               <div>
+                  <div className="popup">
+                     <h4>
+                        would you like this posting to go on Social media !!
+                     </h4>
+                     <div className="popup-icon">
+                        <i className="fab fa-twitter fa-2x"></i>
+                        <i className="fab fa-facebook fa-2x"></i>
+                        <i className="fab fa-youtube fa-2x"></i>
+                        <i className="fab fa-linkedin fa-2x"></i>
+                        <i className="fab fa-instagram fa-2x"></i>
+                     </div>
+                  </div>
+               </div>
+            </Popup>
+
             <Link className="btn btn-light my-1" to="/dashboard">
                Go Back
             </Link>

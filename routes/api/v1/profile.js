@@ -17,36 +17,4 @@ router.post(
 
 router.get("/all", profileController.returnAllProfile);
 
-router.get("/:user_id", profileController.getProfileByUserId);
-
-router.post(
-   "/experience",
-   passport.authenticate("jwt", { session: false }),
-   profileController.addExprience
-);
-
-router.post(
-   "/education",
-   passport.authenticate("jwt", { session: false }),
-   profileController.addEducation
-);
-
-router.delete(
-   "/experience/:exp_id",
-   passport.authenticate("jwt", { session: false }),
-   profileController.deleteExprience
-);
-
-router.delete(
-   "/education/:edu_id",
-   passport.authenticate("jwt", { session: false }),
-   profileController.deleteEducation
-);
-
-router.delete(
-   "/",
-   passport.authenticate("jwt", { session: false }),
-   profileController.deleteUserAndProfile
-);
-
 module.exports = router;

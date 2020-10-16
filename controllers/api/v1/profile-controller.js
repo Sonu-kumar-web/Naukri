@@ -1,11 +1,5 @@
 const Profile = require("../../../models/Profile");
 const User = require("../../../models/User");
-const Post = require("../../../models/Post");
-
-// Load Validation
-// const validateProfileInput = require("../../../validation/profile
-// const validateExperienceInput = require("../../../validation/experience
-// const validateEducationInput = require("../../../validation/education
 
 // fetch current user profile info
 module.exports.fetchProfile = function (req, res) {
@@ -180,64 +174,6 @@ module.exports.addEducation = async function (req, res) {
 
       profile.save().then((profile) => {
          return res.status(200).json(profile);
-      });
-   });
-};
-
-// Delete experience from profile
-module.exports.deleteExprience = function (req, res) {
-   Profile.findOne({ user: req.user.id })
-      .then((profile) => {
-         // Get remove index
-         const removeIndex = profile.experience
-            .map((item) => item.id)
-            .indexOf(req.params.exp_id);
-
-         // Splice out of array
-         profile.experience.splice(removeIndex, 1);
-
-         // Save
-         profile.save().then((profile) => {
-            return res.status(200).json(profile);
-         });
-      })
-      .catch((err) => {
-         return res.status(404).json(err);
-      });
-};
-
-// Delete education from profile
-module.exports.deleteEducation = function (req, res) {
-   Profile.findOne({ user: req.user.id })
-      .then((profile) => {
-         // Get remove index
-         const removeIndex = profile.education
-            .map((item) => item.id)
-            .indexOf(req.params.edu_id);
-
-         // Splice out of array
-         profile.education.splice(removeIndex, 1);
-
-         // Save
-         profile.save().then((profile) => {
-            return res.status(200).json(profile);
-         });
-      })
-      .catch((err) => {
-         return res.status(404).json(err);
-      });
-};
-
-// Delete user and profile
-module.exports.deleteUserAndProfile = function (req, res) {
-   // Remove Posts
-   Post.deleteMany({ user: req.user.id }).then(() => {
-      // Remove Profile
-      Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-         // Remove User
-         User.findOneAndRemove({ _id: req.user.id }).then(() => {
-            return res.status(200).json({ success: true });
-         });
       });
    });
 };

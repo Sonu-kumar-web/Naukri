@@ -7,7 +7,6 @@ import {
    GET_PROFILES,
    PROFILE_ERROR,
    UPDATE_PROFILE,
-   ACCOUNT_DELETED,
 } from "./types";
 
 // Get the current user profile
@@ -83,9 +82,7 @@ export const createProfile = (formData, history, edit = false) => async (
       });
 
       if (res) {
-         dispatch(
-            setAlert(edit ? "Profile Updated" : "Profile Created", "success")
-         );
+         dispatch(setAlert(edit ? "Job Updated" : "Job Posted", "success"));
       }
 
       if (!edit) {
@@ -209,39 +206,5 @@ export const deleteEducation = (id) => async (dispatch) => {
          type: PROFILE_ERROR,
          payload: { msg: err.response.statusText, status: err.response.status },
       });
-   }
-};
-
-// Delete Account and profile
-export const deleteAccount = () => async (dispatch) => {
-   // It is dangerous task so it is a conformation message
-   if (window.confirm("Are you sure? This can not be undone")) {
-      try {
-         const res = await axios.delete("/api/v1/profile");
-         dispatch({
-            type: CLEAR_PROFILE,
-         });
-
-         dispatch({
-            type: ACCOUNT_DELETED,
-         });
-
-         if (res) {
-            dispatch(
-               setAlert("Your account has been permanently deleted", "danger")
-            );
-         }
-      } catch (err) {
-         if (err) {
-            dispatch(setAlert(err.response.data.message, "danger"));
-         }
-         dispatch({
-            type: PROFILE_ERROR,
-            payload: {
-               msg: err.response.statusText,
-               status: err.response.status,
-            },
-         });
-      }
    }
 };

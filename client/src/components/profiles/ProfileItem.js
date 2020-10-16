@@ -1,36 +1,39 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ProfileItem = ({
-   profile: {
-      user: { _id, name, avatar },
-      status,
-      company,
-      location,
-      skills,
-   },
+   profile: { status, company, location, skills, bio },
 }) => {
    return (
       <div className="profile bg-light">
-         <img src={avatar} alt="Profile pic" className="round-img" />
          <div>
-            <h2>{name}</h2>
-            <p>
-               {status} {company && <span>at {company}</span>}
-            </p>
+            <h4>
+               Role: {status}{" "}
+               {company && (
+                  <span>
+                     <br />
+                     Company: {company}
+                  </span>
+               )}
+            </h4>
+
+            <p>{bio}</p>
+
             <p className="my-1">{location && <span>{location}</span>}</p>
-            <Link to={`/profile/${_id}`} className="btn btn-primary">
-               View Profile
-            </Link>
          </div>
-         <ul>
+         <div>
+            <p>Skills required</p>
             {skills.slice(0, 5).map((skill, index) => (
-               <li key={index} className="text-primary">
-                  <i className="fas fa-check"></i> {skill}
-               </li>
+               <p
+                  key={index}
+                  className="text-primary"
+                  style={{ display: "inline" }}
+               >
+                  {skill},
+               </p>
             ))}
-         </ul>
+         </div>
       </div>
    );
 };

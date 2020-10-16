@@ -12,13 +12,16 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <Link to="/create-profile">Job Posting</Link>
          </li>
          <li>
-            <Link to="/dashboard">Apply</Link>
+            <Link to="/profiles">Apply</Link>
          </li>
          <li>
             <Link to="/dashboard">
                <i className="fas fa-user"></i>{" "}
                <span className="hide-sm">Dashboard</span>
             </Link>
+         </li>
+         <li>
+            <Link to="/profiles">Expert Support</Link>
          </li>
          <li>
             <a onClick={logout} href="#!">
@@ -56,6 +59,10 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                <i className="fas fa-code"></i> Naukri.com
             </Link>
          </h1>
+         <div className="topnav">
+            <input type="text" placeholder="Search..." />
+            <input type="submit" value="Search" />
+         </div>
          {!loading && (
             <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
          )}
