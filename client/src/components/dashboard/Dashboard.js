@@ -46,9 +46,20 @@ const Dashboard = ({
             </Fragment>
          ) : (
             <Fragment>
-               <p>You have not yet setup a profile, Please add some info</p>
-               <Link to="/create-profile" className="btn btn-primary my-1">
-                  Create Profile
+               <Link to="#" className="btn btn-primary my-1">
+                  My Profile
+               </Link>
+               <Link to="#" className="btn btn-primary my-1">
+                  Job Postings
+               </Link>
+               <Link to="#" className="btn btn-primary my-1">
+                  Applications by each Job posting
+               </Link>
+               <Link to="#" className="btn btn-primary my-1">
+                  Payment History (if any)
+               </Link>
+               <Link to="#" className="btn btn-primary my-1">
+                  Application life cycle
                </Link>
             </Fragment>
          )}

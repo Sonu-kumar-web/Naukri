@@ -12,7 +12,7 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <Link to="/create-profile">Job Posting</Link>
          </li>
          <li>
-            <Link to="/posts">Apply</Link>
+            <Link to="/dashboard">Apply</Link>
          </li>
          <li>
             <Link to="/dashboard">
