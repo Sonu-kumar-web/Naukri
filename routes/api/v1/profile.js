@@ -12,7 +12,7 @@ router.get(
 router.post(
    "/create-profile",
    passport.authenticate("jwt", { session: false }),
-   profileController.createProfile
+   profileController.createJobs
 );
 
 router.get("/all", profileController.returnAllProfile);
